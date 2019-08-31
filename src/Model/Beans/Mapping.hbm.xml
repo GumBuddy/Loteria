@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Model.Beans.DatosDeContacto_Bean" table="datos_de_contacto" schema="loteria">
+        <id name="idContacto">
+            <column name="id_contacto" sql-type="int(11)"/>
+        </id>
+        <property name="correoElectronico">
+            <column name="correo_electronico" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="direccion">
+            <column name="direccion" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="numeroCelular">
+            <column name="numero_celular" sql-type="char(10)" length="10"/>
+        </property>
+        <set name="datosParticipantesByIdContacto" inverse="true">
+            <key>
+                <column name="id_contacto"/>
+            </key>
+            <one-to-many not-found="ignore" class="Model.Beans.DatosParticipante_Bean"/>
+        </set>
+    </class>
+    <class name="Model.Beans.DatosDeGrupo_Bean" table="datos_de_grupo" schema="loteria">
+        <id name="idGrupo">
+            <column name="id_grupo" sql-type="char(6)" length="6"/>
+        </id>
+        <many-to-one name="datosPersonalesByIdDatosPersonales" class="Model.Beans.DatosPersonales_Bean">
+            <column name="id_datos_personales" not-null="true"/>
+        </many-to-one>
+        <set name="datosParticipantesByIdGrupo" inverse="true">
+            <key>
+                <column name="id_grupo"/>
+            </key>
+            <one-to-many not-found="ignore" class="Model.Beans.DatosParticipante_Bean"/>
+        </set>
+    </class>
+    <class name="Model.Beans.DatosDeInstitucionales_Bean" table="datos_de_institucionales" schema="loteria">
+        <id name="idInstitucionales">
+            <column name="id_institucionales" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="adscripcion">
+            <column name="adscripcion" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="tipoUniversitario">
+            <column name="tipo_universitario" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <set name="datosParticipantesByIdInstitucionales" inverse="true">
+            <key>
+                <column name="id_institucionales"/>
+            </key>
+            <one-to-many not-found="ignore" class="Model.Beans.DatosParticipante_Bean"/>
+        </set>
+    </class>
+    <class name="Model.Beans.DatosParticipante_Bean" table="datos_participante" schema="loteria">
+        <id name="idParticipante">
+            <column name="id_participante" sql-type="int(11)"/>
+        </id>
+        <many-to-one name="datosDeContactoByIdContacto" class="Model.Beans.DatosDeContacto_Bean">
+            <column name="id_contacto"/>
+        </many-to-one>
+        <many-to-one name="datosDeInstitucionalesByIdInstitucionales" class="Model.Beans.DatosDeInstitucionales_Bean">
+            <column name="id_institucionales"/>
+        </many-to-one>
+        <many-to-one name="datosDeGrupoByIdGrupo" class="Model.Beans.DatosDeGrupo_Bean">
+            <column name="id_grupo"/>
+        </many-to-one>
+    </class>
+    <class name="Model.Beans.DatosPersonales_Bean" table="datos_personales" schema="loteria">
+        <id name="idDatosPersonales">
+            <column name="id_datos_personales" sql-type="int(11)"/>
+        </id>
+        <property name="folio">
+            <column name="folio" sql-type="char(6)" length="6"/>
+        </property>
+        <property name="apellidoPaterno">
+            <column name="apellido_paterno" sql-type="varchar(15)" length="15"/>
+        </property>
+        <property name="apellidoMaterno">
+            <column name="apellido_materno" sql-type="varchar(15)" length="15"/>
+        </property>
+        <property name="nombres">
+            <column name="Nombres" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="edad">
+            <column name="edad" sql-type="int(11)"/>
+        </property>
+        <property name="asistencia">
+            <column name="asistencia" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+        <set name="datosDeGruposByIdDatosPersonales" inverse="true">
+            <key>
+                <column name="id_datos_personales" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="Model.Beans.DatosDeGrupo_Bean"/>
+        </set>
+    </class>
+</hibernate-mapping>
