@@ -6,6 +6,7 @@ import Model.DAO.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @javax.servlet.annotation.WebServlet(name = "Servlet_Altas")
@@ -19,7 +20,8 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
     protected void altas_DatosPersonales(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        idDatosPersonales = Integer.parseInt(request.getParameter("ID"));
+        //idDatosPersonales = Integer.parseInt(request.getParameter("ID"));
+        idDatosPersonales = 0;
         String folio = String.valueOf(idDatosPersonales);
         String Nombres = request.getParameter("Nombres");
         String Apellido_P = request.getParameter("Apellido_P");
@@ -32,11 +34,11 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         alta.save(Build_Bean);
     }
 
-
     protected void altas_Grupo(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String idGrupo = request.getParameter("ID");
+        //If (idGrupo=null){}else
         O_D_Grupo alta = new O_D_Grupo();
         Build_Bean_G = new DatosDeGrupo_Bean
                 (idGrupo, Build_Bean);
@@ -62,7 +64,8 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String ID, adscripcion, tipo;
-        ID = request.getParameter("ID_Institucion");
+        /*ID = request.getParameter("ID_Institucion");*/
+        ID = String.valueOf(Build_Bean.getIdDatosPersonales());
         adscripcion = request.getParameter("adscripcion");
         tipo = request.getParameter("tipo");
         O_D_Institucionales alta = new O_D_Institucionales();
@@ -82,11 +85,20 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
             throws javax.servlet.ServletException, IOException {
-        altas_Contacto(request, response);
+      /*  altas_Contacto(request, response);
         altas_institucionales(request, response);
         altas_DatosPersonales(request, response);
         altas_Grupo(request, response);
-        altas_Participante(request, response);
+        altas_Participante(request, response);*/
+
+        PrintWriter out;
+        out = response.getWriter();
+        response.setContentType("text/html");
+        out.println("<html>");
+        out.println("<head><title>Registro</title></head>");
+        out.println("<body>");
+        out.println("<h1>Registro Funcionando</h1>");
+        out.println("</body></html>");
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
