@@ -11,6 +11,15 @@ public class DatosDeGrupo_Bean {
     private DatosPersonales_Bean datosPersonalesByIdDatosPersonales;
     private Collection<DatosParticipante_Bean> datosParticipantesByIdGrupo;
 
+    public DatosDeGrupo_Bean(String idGrupo, DatosPersonales_Bean datosPersonalesByIdDatosPersonales) {
+        this.idGrupo = idGrupo;
+        this.datosPersonalesByIdDatosPersonales = datosPersonalesByIdDatosPersonales;
+    }
+
+    public DatosDeGrupo_Bean() {
+
+    }
+
     @Id
     @Column(name = "id_grupo", nullable = false, length = 6)
     public String getIdGrupo() {

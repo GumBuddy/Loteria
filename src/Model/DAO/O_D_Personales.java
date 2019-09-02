@@ -1,15 +1,14 @@
-package DAO;
+package Model.DAO;
 
 import Hibernate_Model.HibernateUtil;
-import Model.Beans.DatosDeGrupo_Bean;
+import Model.Beans.DatosParticipante_Bean;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class O_D_Grupo {
-
+public class O_D_Personales {
     private Session session;
     private Transaction transaction;
 
@@ -23,7 +22,7 @@ public class O_D_Grupo {
         throw new HibernateException("Error en al acceder a datos en " + HE);
     }
 
-    public void save(DatosDeGrupo_Bean object) throws HibernateException {
+    public void save(DatosParticipante_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.save(object);
@@ -35,7 +34,7 @@ public class O_D_Grupo {
         }
     }
 
-    public void update(DatosDeGrupo_Bean object) throws HibernateException {
+    public void update(DatosParticipante_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.update(object);
@@ -48,7 +47,7 @@ public class O_D_Grupo {
         }
     }
 
-    public void delete(DatosDeGrupo_Bean object) throws HibernateException {
+    public void delete(DatosParticipante_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.delete(object);
@@ -61,25 +60,26 @@ public class O_D_Grupo {
         }
     }
 
-    public DatosDeGrupo_Bean getObject(String id_object) throws HibernateException {
-        DatosDeGrupo_Bean object = null;
+    public DatosParticipante_Bean getObject(String id_object) throws HibernateException {
+        DatosParticipante_Bean object = null;
         try {
             StartOperation();
-            object = session.get(DatosDeGrupo_Bean.class, id_object);
+            object = session.get(DatosParticipante_Bean.class, id_object);
         } finally {
             session.close();
         }
         return object;
     }
 
-    public List<DatosDeGrupo_Bean> getlist() throws HibernateException {
-        List<DatosDeGrupo_Bean> list = null;
+    public List<DatosParticipante_Bean> getlist() throws HibernateException {
+        List<DatosParticipante_Bean> list = null;
         try {
             StartOperation();
-            list = session.createQuery("FROM DatosDeGrupo_Bean ").list();
+            list = session.createQuery("FROM DatosParticipante_Bean ").list();
         } finally {
             session.close();
         }
         return list;
     }
+
 }

@@ -16,6 +16,20 @@ public class DatosPersonales_Bean {
     private Byte asistencia;
     private Collection<DatosDeGrupo_Bean> datosDeGruposByIdDatosPersonales;
 
+    public DatosPersonales_Bean(Integer idDatosPersonales, String folio, String apellidoPaterno, String apellidoMaterno, String nombres, Integer edad, Byte asistencia) {
+        this.idDatosPersonales = idDatosPersonales;
+        this.folio = folio;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.nombres = nombres;
+        this.edad = edad;
+        this.asistencia = asistencia;
+    }
+
+    public DatosPersonales_Bean() {
+
+    }
+
     @Id
     @Column(name = "id_datos_personales", nullable = false)
     public Integer getIdDatosPersonales() {

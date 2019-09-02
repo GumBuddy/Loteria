@@ -1,4 +1,4 @@
-package DAO;
+package Model.DAO;
 
 import Hibernate_Model.HibernateUtil;
 import Model.Beans.DatosDeContacto_Bean;

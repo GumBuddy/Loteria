@@ -12,6 +12,16 @@ public class DatosDeInstitucionales_Bean {
     private String tipoUniversitario;
     private Collection<DatosParticipante_Bean> datosParticipantesByIdInstitucionales;
 
+    public DatosDeInstitucionales_Bean(String idInstitucionales, String adscripcion, String tipoUniversitario) {
+        this.idInstitucionales = idInstitucionales;
+        this.adscripcion = adscripcion;
+        this.tipoUniversitario = tipoUniversitario;
+    }
+
+    public DatosDeInstitucionales_Bean() {
+
+    }
+
     @Id
     @Column(name = "id_institucionales", nullable = false, length = 20)
     public String getIdInstitucionales() {

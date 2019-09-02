@@ -11,6 +11,17 @@ public class DatosParticipante_Bean {
     private DatosDeInstitucionales_Bean datosDeInstitucionalesByIdInstitucionales;
     private DatosDeGrupo_Bean datosDeGrupoByIdGrupo;
 
+    public DatosParticipante_Bean(Integer idParticipante, DatosDeContacto_Bean datosDeContactoByIdContacto, DatosDeInstitucionales_Bean datosDeInstitucionalesByIdInstitucionales, DatosDeGrupo_Bean datosDeGrupoByIdGrupo) {
+        this.idParticipante = idParticipante;
+        this.datosDeContactoByIdContacto = datosDeContactoByIdContacto;
+        this.datosDeInstitucionalesByIdInstitucionales = datosDeInstitucionalesByIdInstitucionales;
+        this.datosDeGrupoByIdGrupo = datosDeGrupoByIdGrupo;
+    }
+
+    public DatosParticipante_Bean() {
+
+    }
+
     @Id
     @Column(name = "id_participante", nullable = false)
     public Integer getIdParticipante() {

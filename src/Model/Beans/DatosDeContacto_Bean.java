@@ -13,6 +13,17 @@ public class DatosDeContacto_Bean {
     private String numeroCelular;
     private Collection<DatosParticipante_Bean> datosParticipantesByIdContacto;
 
+    public DatosDeContacto_Bean(Integer idContacto, String correoElectronico, String direccion, String numeroCelular) {
+        this.idContacto = idContacto;
+        this.correoElectronico = correoElectronico;
+        this.direccion = direccion;
+        this.numeroCelular = numeroCelular;
+    }
+
+    public DatosDeContacto_Bean() {
+
+    }
+
     @Id
     @Column(name = "id_contacto", nullable = false)
     public Integer getIdContacto() {
