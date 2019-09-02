@@ -1,6 +1,7 @@
 package Control;
 
 import Model.Beans.*;
+import Model.DAO.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,9 +26,10 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         String Apellido_M = request.getParameter("Apellido_M");
         Integer Edad = Integer.valueOf(request.getParameter("Edad"));
         Byte Asistencia = null;
+        O_D_Personales alta = new O_D_Personales();
         Build_Bean = new DatosPersonales_Bean
                 (idDatosPersonales, folio, Apellido_P, Apellido_M, Nombres, Edad, Asistencia);
-
+        alta.save(Build_Bean);
     }
 
 
@@ -35,8 +37,10 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String idGrupo = request.getParameter("ID");
+        O_D_Grupo alta = new O_D_Grupo();
         Build_Bean_G = new DatosDeGrupo_Bean
                 (idGrupo, Build_Bean);
+        alta.save(Build_Bean_G);
     }
 
     protected void altas_Contacto(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
@@ -47,9 +51,10 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         Correo = request.getParameter("Correo");
         Direccion = request.getParameter("Direccion");
         NumeroCelular = request.getParameter("Celular");
+        O_D_Contacto alta = new O_D_Contacto();
         Build_Bean_C = new DatosDeContacto_Bean
                 (Id, Correo, Direccion, NumeroCelular);
-
+        alta.save(Build_Bean_C);
 
     }
 
@@ -60,15 +65,19 @@ public class Servlet_Altas extends javax.servlet.http.HttpServlet {
         ID = request.getParameter("ID_Institucion");
         adscripcion = request.getParameter("adscripcion");
         tipo = request.getParameter("tipo");
+        O_D_Institucionales alta = new O_D_Institucionales();
         Build_Bean_I = new DatosDeInstitucionales_Bean
                 (ID, adscripcion, tipo);
+        alta.save(Build_Bean_I);
     }
 
     protected void altas_Participante(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        O_D_Participante alta = new O_D_Participante();
         DatosParticipante_Bean Bean_Final = new DatosParticipante_Bean
                 (idDatosPersonales, Build_Bean_C, Build_Bean_I, Build_Bean_G);
+        alta.save(Bean_Final);
     }
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)

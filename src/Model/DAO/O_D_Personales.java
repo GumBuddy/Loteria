@@ -1,7 +1,7 @@
 package Model.DAO;
 
 import Hibernate_Model.HibernateUtil;
-import Model.Beans.DatosParticipante_Bean;
+import Model.Beans.DatosPersonales_Bean;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,7 +22,7 @@ public class O_D_Personales {
         throw new HibernateException("Error en al acceder a datos en " + HE);
     }
 
-    public void save(DatosParticipante_Bean object) throws HibernateException {
+    public void save(DatosPersonales_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.save(object);
@@ -34,7 +34,7 @@ public class O_D_Personales {
         }
     }
 
-    public void update(DatosParticipante_Bean object) throws HibernateException {
+    public void update(DatosPersonales_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.update(object);
@@ -47,7 +47,7 @@ public class O_D_Personales {
         }
     }
 
-    public void delete(DatosParticipante_Bean object) throws HibernateException {
+    public void delete(DatosPersonales_Bean object) throws HibernateException {
         try {
             StartOperation();
             session.delete(object);
@@ -60,22 +60,22 @@ public class O_D_Personales {
         }
     }
 
-    public DatosParticipante_Bean getObject(String id_object) throws HibernateException {
-        DatosParticipante_Bean object = null;
+    public DatosPersonales_Bean getObject(String id_object) throws HibernateException {
+        DatosPersonales_Bean object = null;
         try {
             StartOperation();
-            object = session.get(DatosParticipante_Bean.class, id_object);
+            object = session.get(DatosPersonales_Bean.class, id_object);
         } finally {
             session.close();
         }
         return object;
     }
 
-    public List<DatosParticipante_Bean> getlist() throws HibernateException {
-        List<DatosParticipante_Bean> list = null;
+    public List<DatosPersonales_Bean> getlist() throws HibernateException {
+        List<DatosPersonales_Bean> list = null;
         try {
             StartOperation();
-            list = session.createQuery("FROM DatosParticipante_Bean ").list();
+            list = session.createQuery("FROM DatosPersonales_Bean ").list();
         } finally {
             session.close();
         }
